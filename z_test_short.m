@@ -10,7 +10,7 @@ TM_rc=[
 L=[];
 for i=1:100
     if 	TM_rc(i)~=0
-    L=[L,ones(1,TM_rc(i))*i];
+        L=[L,ones(1,TM_rc(i))*i];
     end   
 end
 d=L;
@@ -18,7 +18,8 @@ mu_nor=22;
 sigma_nor=1;
 % the likelihood function
 pdf = @(d,mu,sigma) 0.9*(1./(sqrt(2*pi)*sigma_nor))*exp(-((d-mu_nor).^2)./2)+0.1*(1./(sqrt(2*pi)*sigma))*exp(-((d-mu).^2)./(2*sigma.^2));
-phat = mle(d,'pdf',pdf,'start',[10,1])
+% set the initial data
+phat = mle(d,'pdf',pdf,'start',[1,1])
 L_N=[];
 for i=1:100
     if 	N_rc(i)~=0
@@ -26,7 +27,7 @@ for i=1:100
     end   
 end
 A = L_N';
-H=ztest(A,phat(1),phat(2))
+H=ztest(A,phat(1),phat(2));
 if H == 0
 disp('stable')
 else
