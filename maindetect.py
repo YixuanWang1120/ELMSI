@@ -23,12 +23,12 @@ if __name__ == "__main__":
     bklist,unitlist=fr.bk_unit(f)
     lenhooklist,repetelist,bk,SNPlist=fr.get_hook(f)
     posdic = fr.read_count(f,bk)
-    rdic,ldic= cal_nor(bklist,posdic,lenhooklist,repetelist)     #计算长度分布参数
+    rdic,ldic= cal_nor(bklist,posdic,lenhooklist,repetelist)     
     end = time.clock()
     print >>f_out,"****************Number of MSI*****************"
     print >>f_out,len(bklist)
     print >>f_out,"****************BreakPoint List of MSI*****************"
-    print >>f_out,bklist                            #保存unit:断点的字典
+    print >>f_out,bklist                            #
     '''print >>f_out,"****************Unit List of MSI*****************"
     print >>f_out,unitlist
     print >>f_out,"****************LenHook List of MSI*****************"
