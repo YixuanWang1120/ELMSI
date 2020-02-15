@@ -28,8 +28,8 @@ def cal_nor(bklist,posdic,lenhooklist,repetelist):
     ldic =  dict()
     rdic = dict()
     for key in keys:
-        ldic[key]=[0]*ITIE_TIME  #保存每次的估计值，循环ITIE_TIME次
-        rdic[key]=[0]*3 #保存unit:长度分布参数
+        ldic[key]=[0]*ITIE_TIME  
+        rdic[key]=[0]*3 
     num = len(keys)
     for key in keys:
         for i in range(ITIE_TIME):
