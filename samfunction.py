@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-def comple(base): #取某个碱基的互补碱基
+def comple(base): 
     if base == 'A' or base == 'a':
         return 'T'
     if base == 'T' or base == 't':
@@ -11,17 +11,17 @@ def comple(base): #取某个碱基的互补碱基
     if base == 'G' or base == 'g':
         return 'C'
 
-def revunit(unit): #将unit逆序
+def revunit(unit): 
     return unit[::-1]
 
-def compleunit(unit): #取unit的互补链
+def compleunit(unit): 
     # reu = unit[::-1]
     uc = ''
     for i in range(len(unit)):
         uc += str(comple(unit[i]))
     return uc
 
-def revcompleunit(unit): #取unit的反向互补链
+def revcompleunit(unit): 
     # reu = unit[::-1]
     uc = ''
     for i in range(len(unit)):
@@ -30,7 +30,7 @@ def revcompleunit(unit): #取unit的反向互补链
     #return  uc
 
 def issame(u1, u2):
-    l = [] #例如：unit="ATG",L中保存['ATG', 'CAT', 'TGA', 'TCA', 'GAT', 'ATC']
+    l = [] #unit="ATG",L=['ATG', 'CAT', 'TGA', 'TCA', 'GAT', 'ATC']
     l1 = len(u1)
     l2 = len(u2)
     if l1 != l2:
@@ -44,7 +44,7 @@ def issame(u1, u2):
         l.append(rcx)
     return u2 in l
 
-def unitindex(u, ulist): #取某一unit在MSIlist中的索引位置
+def unitindex(u, ulist): 
     for i in range(len(ulist)):
         if issame(u, ulist[i]):
             return i
@@ -56,7 +56,7 @@ def unitfromlist(u,ulist):
             return i
     return False
 
-def unitissame(unitlist): #k-mer+滑动窗口识别unit
+def unitissame(unitlist): 
     assert(len(unitlist)==6)
     if issame(unitlist[0],unitlist[1]) and issame(unitlist[1],unitlist[2]) and issame(unitlist[2],unitlist[3]) and issame(unitlist[3],unitlist[4]) and issame(unitlist[4], unitlist[5]):
         return unitlist[0]
