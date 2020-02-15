@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
- 
 import scipy
 from scipy.stats import f
 import numpy as np
@@ -17,9 +14,9 @@ list_groups=[group1,group2,group3]
 list_total=group1+group2+group3
  
  
-#正态分布测试
+#normal distribution testing
 def check_normality(testData):
-    #20<样本数<50用normal test算法检验正态分布性
+    #20<sample number<50 normal test
     if 20<len(testData) <50:
        p_value= stats.normaltest(testData)[1]
        if p_value<0.05:
@@ -31,7 +28,7 @@ def check_normality(testData):
            print "data are normal distributed"
            return True
      
-    #样本数小于50用Shapiro-Wilk算法检验正态分布性
+    #sample number<50 Shapiro-Wilk
     if len(testData) <50:
        p_value= stats.shapiro(testData)[1]
        if p_value<0.05:
@@ -65,15 +62,10 @@ def check_normality(testData):
            print "data are normal distributed"
            return True
  
- 
-#对所有样本组进行正态性检验
 def NormalTest(list_groups):
     for group in list_groups:
-        #正态性检验
         status=check_normality(group1)
         if status==False :
             return False
-             
-     
-#对所有样本组进行正态性检验   
+               
 NormalTest(list_groups)
