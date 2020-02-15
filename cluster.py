@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-def cluster(lis_ins,epsilon,ind,alpha = 0.9):#聚类
+def cluster(lis_ins,epsilon,ind,alpha = 0.9):
     lis_sorted = sorted(lis_ins,key = lambda tu:tu[ind])
     len_lis = len(lis_ins)
     result = [[]]
