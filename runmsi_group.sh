@@ -34,10 +34,10 @@ read -p "Press any key to continue."
  bwa sampe -f ./group/snp/tum_tur${tur[$i-1]}.sam ref.fa l.sai r.sai l.fq r.fq
  sed -i '1d' ./group/snp/tum_tur${tur[$i-1]}.sam
  sed -i '1d' ./group/snp/tum_tur${tur[$i-1]}.sam
- echo "*******開始處理第"$i"個文件********"
+ echo "*******start processing "$i"file********"
 read -p "Press any key to continue."
  python /home/wyx/sim/LMSI/fileclass/maindetect.py  group/snp/tum_tur${tur[$i-1]}.sam  group/snp/tum_tur${tur[$i-1]}.txt
- echo "************第"$i"個文件處理完成********"
+ echo "************"$i"file finished********"
 read -p "Press any key to continue."
 done
 done
