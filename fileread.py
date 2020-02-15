@@ -26,7 +26,7 @@ class fileRead:
         while True:
             line1 = filename.readline()
             if not line1: break
-            line2 = filename.readline().strip()  #strip去除首位空格
+            line2 = filename.readline().strip()  #strip
             line1_list = line1.split('\t')
             line2_list = line2.split('\t')
             readseq1 = line1_list[9].upper()
@@ -62,7 +62,7 @@ class fileRead:
                 continue
         return self.counter, counter1
 
-    def countdoubleMSI(self, filename): #判断每对read是否是重复unit
+    def countdoubleMSI(self, filename): 
         filename.seek(0)
         counter0 = counter1 = counter2 = counter3 = 0
         while True:
@@ -77,16 +77,16 @@ class fileRead:
                                     line1_list[5], line1_list[6], line1_list[7], line1_list[8], readseq1, \
                                     line2_list[0], line2_list[1], line2_list[2], line2_list[3], line2_list[4],
                                     line2_list[5], line2_list[6], line2_list[7], line2_list[8], readseq2)
-            if int(pairedread.classify()) == 3:  # 两条链重复
+            if int(pairedread.classify()) == 3:  
                 counter3 += 1
                 continue
-            if int(pairedread.classify()) == 2:  # 第一条链重复
+            if int(pairedread.classify()) == 2: 
                 counter2 += 1
                 continue
-            if int(pairedread.classify()) == 1:  # 第二条链重复
+            if int(pairedread.classify()) == 1:  
                 counter1 += 1
                 continue
-            if int(pairedread.classify()) == 0:  # 两条都不重复
+            if int(pairedread.classify()) == 0:  
                 counter0 += 1
                 continue
         return counter3, counter2, counter1, counter0
@@ -193,10 +193,10 @@ class fileRead:
                                     line1_list[5], line1_list[6], line1_list[7], line1_list[8], readseq1, \
                                     line2_list[0], line2_list[1], line2_list[2], line2_list[3], line2_list[4],
                                     line2_list[5], line2_list[6], line2_list[7], line2_list[8], readseq2)
-                if (pairedread.read1.CIGAR == '100M' and pairedread.read2.CIGAR != '100M' and not pairedread.read2.isRepete()): #第一条匹配，第二条跨断点
+                if (pairedread.read1.CIGAR == '100M' and pairedread.read2.CIGAR != '100M' and not pairedread.read2.isRepete()): 
                     len_hook += pairedread.read2.getlefthook()
                     continue
-                if (pairedread.read1.CIGAR != '100M' and not pairedread.read1.isRepete() and pairedread.read2.CIGAR == '100M'): #第一条跨断点，第二条匹配
+                if (pairedread.read1.CIGAR != '100M' and not pairedread.read1.isRepete() and pairedread.read2.CIGAR == '100M'): 
                     len_hook += pairedread.read1.getlefthook()
                     continue
         return len_hook
@@ -216,10 +216,10 @@ class fileRead:
                                     line1_list[5], line1_list[6], line1_list[7], line1_list[8], readseq1, \
                                     line2_list[0], line2_list[1], line2_list[2], line2_list[3], line2_list[4],
                                     line2_list[5], line2_list[6], line2_list[7], line2_list[8], readseq2)
-            if (pairedread.read1.isRepete() and pairedread.read2.CIGAR != '100M' and not pairedread.read2.isRepete()): #第一条重复，第二条跨断点
+            if (pairedread.read1.isRepete() and pairedread.read2.CIGAR != '100M' and not pairedread.read2.isRepete()): 
                 len_hook1 += pairedread.read2.getlefthook()
                 continue
-            elif (pairedread.read1.CIGAR != '100M' and not pairedread.read1.isRepete() and pairedread.read2.isRepete()): #第一条跨断点，第二条重复
+            elif (pairedread.read1.CIGAR != '100M' and not pairedread.read1.isRepete() and pairedread.read2.isRepete()): 
                 len_hook1 += pairedread.read1.getlefthook()
                 continue
         return len_hook1
@@ -345,7 +345,7 @@ class fileRead:
                     msl[id][1] += 1
             else:
                 continue
-        return msl  # 记录每种unit对应的完全落入的read个数
+        return msl  
 
     def ratioMS(self, filename, msi_list):
         l = self.countCS(filename, msi_list)
@@ -360,7 +360,7 @@ class fileRead:
         rl = []
         for i in range(len(l)):
             rl.append((l[i][0], sl[i]))
-        return rl  # 记录每种unit对应的比例
+        return rl  
 
     def printrpt_read(self,file_in):
         file_in.seek(0)
@@ -403,23 +403,23 @@ class fileRead:
                             pairedread.read2.CIGAR != "*" and int(pairedread.read1.POS) < int(pairedread.read2.POS):
                 # if pairedread.read1.verify(ref) and pairedread.read2.getmsiunit():
                 if pairedread.read2.getmsiunit()[0]:
-                    bkun = pairedread.read2.getbkunit()  # 返回（断点，unit）
+                    bkun = pairedread.read2.getbkunit()  
                     bklist.append(bkun)
             elif pairedread.read2.CIGAR == str(readlen2) + "M" and pairedread.read1.CIGAR != str(readlen1) + "M" and \
                             pairedread.read1.CIGAR != "*" and int(pairedread.read2.POS) < int(pairedread.read1.POS):
                 # if pairedread.read2.verify(ref) and pairedread.read1.getmsiunit():
                 if pairedread.read1.getmsiunit()[0]:
-                    bkun = pairedread.read1.getbkunit()  # 返回（断点，unit）
+                    bkun = pairedread.read1.getbkunit()  
                     bklist.append(bkun)
             else:
                 continue'''
             if pairedread.read1.isMap() and not pairedread.read2.isMap() and  pairedread.read2.CIGAR != "*" and \
                 int(pairedread.read1.POS) < int(pairedread.read2.POS) and pairedread.read2.getmsiunit()[0]:
-                bkun = pairedread.read2.getbkunit()  # 返回（unit,断点）
+                bkun = pairedread.read2.getbkunit() 
                 bklist.append(bkun)
             elif not pairedread.read1.isMap() and pairedread.read1.CIGAR != "*"and pairedread.read2.isMap() and \
                 int(pairedread.read2.POS) < int(pairedread.read1.POS) and pairedread.read1.getmsiunit()[0]:
-                bkun = pairedread.read1.getbkunit()  # 返回（unit,断点）
+                bkun = pairedread.read1.getbkunit()  
                 bklist.append(bkun)
             else:
                 continue
@@ -432,7 +432,7 @@ class fileRead:
         self.unitdic = list(self.bklist.keys())
         return self.bklist,self.unitdic
 
-    def get_hook(self,file_in):    #计算每个unit对应的repete的read个数以及异常read中对应msi的长度
+    def get_hook(self,file_in):    
         file_in.seek(0)
         lenhooklist = {}
         repetelist = {}
@@ -559,6 +559,3 @@ if __name__ == "__main__":
     f_out.close()
     f.close()
     print "OK"
-
-
-
