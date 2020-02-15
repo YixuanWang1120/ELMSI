@@ -140,7 +140,7 @@ class Read:
             if slidewin != unitwin:
                 continue
             else:
-                flag = 1  #正向开始unit重复
+                flag = 1  
                 return ''.join(unit),flag
         revseq = self.SEQ[-1::-1]
         revunitwin = revseq[0:6]
@@ -151,7 +151,7 @@ class Read:
             if slidewin != revunitwin:
                 continue
             else:
-                flag =2   #反向开始unit
+                flag =2   
                 return ''.join(revunit),flag
         return  False , flag
 
@@ -166,14 +166,13 @@ class pairedRead:
 
     def classify(self):
         if self.read1.isRepete() and self.read2.isRepete():
-            return 3  # pairedread一对都重复
+            return 3  
         elif self.read1.isRepete():
-            return 2  # pairedread中第一条read重复
+            return 2  
         elif self.read2.isRepete():
-            return 1  # pairedread中第二条read重复
+            return 1 
         else:
-            return 0  # pairedread中两条都不重复
-
+            return 0  
     def getms(self):
         return self.msset
 
